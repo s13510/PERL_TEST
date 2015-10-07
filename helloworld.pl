@@ -1,1 +1,4 @@
-print "hello world\n";
+
+open (OUTFILE, ">output_test");
+print OUTFILE "hello world\n";
+close(OUTFILE);
