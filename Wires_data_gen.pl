@@ -1,3 +1,6 @@
+use warnings;
+#open(OUTFILE, ">synthetic_wires_data2_replication_1.txt");
+#open(FILE, "wires7_scrambled.txt");
 
 open(OUTFILE, ">synthetic_wires_data2_replication_1");
 open(FILE, "synthetic_wires_data2");
@@ -6,6 +9,7 @@ $row=0;
 while (<FILE>)
 {
 	next if /^\s*$/;
+	next unless /^\s*WIRE/;
 	chop;
 	$row++;
 	#print OUTFILE "<$row>|";
@@ -19,65 +23,48 @@ while (<FILE>)
 	}		
 	else {
 		@val_array= split(/\|/, $_);
-		$c=1;
+		
 		foreach $val (@val_array) {		
 
-
-			if($c >=2 && $c <=6) {
-			
-				$val2 = scramble($val);
-				$val3 = scramble2($val2);
-				$new_val = scramble3($val3);
-				
-				print OUTFILE "$new_val|";
-			}
-			else {
 				print OUTFILE "$val|";
-			}
-			$c++;
+			
 			
 		}
+		$dt = date_gen();
+		$dt_array{$dt}++;
+		print OUTFILE "$dt\n";
 
-		print OUTFILE "\n";
-
-		for ($x=1; $x<3; $x++) {
+		
+		for ($x=1; $x<1000; $x++) {
 
 			$row++;
-			#print OUTFILE "<$row>|";
+			#print OUTFILE "<$x:$row>|";
 
 			$dt = date_gen();
-			while ($dt_array{$dt} > 0)
+			$dt_array{$dt}++;
+			
+			while($dt_array{$dt} > 1)
 			{
 				$dt = date_gen();
 				$dt_array{$dt}++;
-			}	
-			
-			print OUTFILE "$dt\n";
-			
-			$c=1;
+			}
+					
 			foreach $val (@val_array)
 			{
-
-					if($c >=2 && $c <=6) {
-					$val2 = scramble($val);
-					$val3 = scramble2($val2);
-					$new_val = scramble3($val3);
-					print OUTFILE "$new_val|";
-				} else {
 					print OUTFILE "$val|";
-				}
-				$c++;
 			}
-			print OUTFILE "\n";
+			print OUTFILE "$dt\n";
 		}
+		undef(%dt_array);
 	}
 	
-	last if ($row > 100);
+	#last if ($row > 100);
 }
 
 close (FILE);
 close (OUTFILE);
 print STDOUT "$row records written\n";
+
 
 sub scramble {
     (my $str) = @_;
@@ -119,8 +106,8 @@ sub date_gen {
 	$dd_min = 1;
 
 	$yyyy = $yyyy_min + int(rand($yyyy_max - $yyyy_min));
-	$mm = sprintf("02d", $mm_min + int(rand($mm_max - $mm_min)));
-	$dd = sprintf("02d", $mm_min + int(rand($mm_max - $mm_min)));
+	$mm = sprintf("%02d", $mm_min + int(rand($mm_max - $mm_min)));
+	$dd = sprintf("%02d", $dd_min + int(rand($dd_max - $dd_min)));
 	$date = ($yyyy * 10000) + ($mm * 100) + $dd;
 	return $date;
 }
