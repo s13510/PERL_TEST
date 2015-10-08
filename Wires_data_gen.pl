@@ -35,7 +35,7 @@ while (<FILE>)
 		print OUTFILE "$dt\n";
 
 		
-		for ($x=1; $x<10; $x++) {
+		for ($x=1; $x<50000; $x++) {
 
 			$row++;
 			#print OUTFILE "<$x:$row>|";
