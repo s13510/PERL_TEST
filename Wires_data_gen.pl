@@ -1,9 +1,9 @@
 use warnings;
-open(OUTFILE, ">synthetic_wires_data2_replication_1.txt");
-open(FILE, "wires7_scrambled.txt");
+#open(OUTFILE, ">synthetic_wires_data2_replication_1.txt");
+#open(FILE, "wires7_scrambled.txt");
 
-#open(OUTFILE, ">synthetic_wires_data2_replication_1");
-#open(FILE, "synthetic_wires_data2");
+open(OUTFILE, ">synthetic_wires_data2_replication_1");
+open(FILE, "synthetic_wires_data2");
 $row=0;
 
 while (<FILE>)
