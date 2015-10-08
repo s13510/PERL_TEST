@@ -1,9 +1,9 @@
 use warnings;
-#open(OUTFILE, ">synthetic_wires_data2_replication_1.txt");
-#open(FILE, "wires7_scrambled.txt");
+open(OUTFILE, ">synthetic_wires_data2_replication_1.txt");
+open(FILE, "wires7_scrambled.txt");
 
-open(OUTFILE, ">synthetic_wires_data2_replication_1");
-open(FILE, "synthetic_wires_data2");
+#open(OUTFILE, ">synthetic_wires_data2_replication_1");
+#open(FILE, "synthetic_wires_data2");
 $row=0;
 
 while (<FILE>)
@@ -24,41 +24,29 @@ while (<FILE>)
 	else {
 		@val_array= split(/\|/, $_);
 		
-		foreach $val (@val_array) {		
-
-				print OUTFILE "$val|";
+		for ($yyyy = 1960; $yyyy <= 2015; $yyyy++) {
 			
-			
-		}
-		$dt = date_gen();
-		$dt_array{$dt}++;
-		print OUTFILE "$dt\n";
-
-		
-		for ($x=1; $x<50000; $x++) {
-
-			$row++;
-			#print OUTFILE "<$x:$row>|";
-
-			$dt = date_gen();
-			$dt_array{$dt}++;
-			
-			while($dt_array{$dt} > 1)
-			{
-				$dt = date_gen();
-				$dt_array{$dt}++;
-			}
+				for ($mm = 1; $mm <= 12; $mm++) {
 					
-			foreach $val (@val_array)
-			{
-					print OUTFILE "$val|";
-			}
-			print OUTFILE "$dt\n";
+					$max_dd = 30;
+					if($mm == 2) {$max_dd = 28;}
+					elsif($mm == 1 || $mm == 3 || $mm == 5 || $mm == 7 || $mm == 8 || $mm == 10 || $mm == 12) 
+					{ $max_dd = 31; }
+					
+					for ($dd = 1; $dd <= $max_dd; $dd++) {
+					
+						$date = ($yyyy * 10000) + (sprintf("%04d",($mm * 100))) + sprintf("%02d",$dd);
+					
+						foreach $val (@val_array) {		
+							print OUTFILE "$val|";
+						}
+						print OUTFILE "$date\n";
+					}
+				}				
 		}
-		undef(%dt_array);
 	}
 	
-	#last if ($row > 100);
+	last if ($row > 2);
 }
 
 close (FILE);
