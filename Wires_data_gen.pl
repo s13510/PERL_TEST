@@ -46,12 +46,12 @@ while (<FILE>)
 		}
 	}
 	
-	last if ($row > 2);
+	#last if ($row > 2);
 }
 
 close (FILE);
 close (OUTFILE);
-print STDOUT "$row records written\n";
+print STDOUT "$row records processed\n";
 
 
 sub scramble {
