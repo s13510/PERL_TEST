@@ -9,7 +9,7 @@ $row=0;
 while (<FILE>)
 {
 	next if /^\s*$/;
-	next unless /^\s*WIRE/;
+	next if /^\s*\d\d\d\d/;
 	chop;
 	$row++;
 	#print OUTFILE "<$row>|";
@@ -35,7 +35,7 @@ while (<FILE>)
 		print OUTFILE "$dt\n";
 
 		
-		for ($x=1; $x<1000; $x++) {
+		for ($x=1; $x<10; $x++) {
 
 			$row++;
 			#print OUTFILE "<$x:$row>|";
