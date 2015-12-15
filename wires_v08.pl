@@ -64,7 +64,7 @@ while (<FILE>)
 
 		print OUTFILE "\n";
 
-		for ($x=1; $x<40; $x++) {
+		for ($x=1; $x<75; $x++) {
 
 			$row++;
 			#print OUTFILE "<$row>|";
