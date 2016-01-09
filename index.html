@@ -1,0 +1,1634 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Calibri","sans-serif";}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Calibri","sans-serif";}
+.MsoChpDefault
+	{font-family:"Calibri","sans-serif";}
+.MsoPapDefault
+	{margin-bottom:10.0pt;
+	line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-CA link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>The
+below detection logic is to help determine data requirements for a probabilistic
+model. &nbsp;We'll use the </span><span lang=EN-US><a
+href="http://www.wolfsberg-principles.com/pdf/standards/Wolfsberg_Credit_Cards_AML_Guidance_(2009).pdf">Wolfsberg
+Principles</a></span><span lang=EN-US style='color:#333333'> as a guide.</span></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>Detection
+Logic </span></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Overpayments and
+Refunds to credit card balances</span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>This scenario purports to detect AML risks in
+which a money launderer may be using dirty money to overpay credit card balance
+and get a refund of clean money from the credit card issuer.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>Overpayment = (Payment made) &gt; (Payment
+Owed)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>In the example below, there are two
+overpayments that resulted in negative balance that’d be refunded to the
+customer (e.g. in 90 days).</span></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.25in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Transaction
+  Date</span></b></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Transaction
+  Type</span></b></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Transaction
+  Amount ($)</span></b></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Credit
+  Card Balance</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>1/1/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>100</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>100</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>1/15/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>100</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>200</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>1/23/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>100</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>300</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>1/31/15</span></b></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>Payment</span></b></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>-600</span></b></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>-300
+  (to be refunded to customer)</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>2/10/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>100</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>-200</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>2/19/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>200</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>0</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>2/25/15</span></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>300</span></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>300</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=89 valign=top style='width:66.45pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>2/28/15</span></b></p>
+  </td>
+  <td width=108 valign=top style='width:81.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>Payment</span></b></p>
+  </td>
+  <td width=128 valign=top style='width:96.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>-700</span></b></p>
+  </td>
+  <td width=193 valign=top style='width:144.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:#333333'>-400
+  (to be refunded to customer)</span></b></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold for Overpayment</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where # of overpayments is 70% or greater in
+the # of months in the time period covered by the transaction data (e.g. 7
+overpayments in a 10-month period)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:yellow;background:lightgrey'>Yellow</span></b><span
+lang=EN-US style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where
+# of overpayments is between 30% and 70%.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:#009A00'>Green</span></b><span lang=EN-US
+style='color:#333333'> where # of overpayments is below 30%.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold for Refunds</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where # of Refunds is 50% or greater in the #
+of months in the time period covered by the transaction data (e.g. 5 refunds in
+a 10-month period)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:yellow;background:lightgrey'>Yellow</span></b><span
+lang=EN-US style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where
+# of overpayments is between 25% and 50%.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+lang=EN-US style='color:#009A00'>Green</span></b><span lang=EN-US
+style='color:#333333'> where # of overpayments is below 25%.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Method of
+payment to card balances</span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>This scenario purports to detect AML risks in
+which a money launder may be using money from hard-to-trace source to pay off
+credit card balance.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>Categorize the credit payments by the payment
+methods and look for unusual patterns, e.g. consistent or large usage of ACH by
+a domestic customer to pay off the credit card</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>The following fields should be part of
+transaction data schema.</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.25in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Transaction
+  Type</span></b></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Credit_Debit_Flag</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Payment</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>C
+  (Credit)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Refund</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>C</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Reversal</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>C</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Award</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>C</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Purchase</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>D (Debit)</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Fee</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>D</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Interest
+  charge</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>D</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Penalty</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>D</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>…</span></p>
+  </td>
+  <td width=151 valign=top style='width:113.4pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>…</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Payment
+  Method</span></b></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Cash</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Wire</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>ACH</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Paper
+  Check</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>e-Check</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Online
+  Transfer</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Payment
+  at ATM</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+ <tr>
+  <td width=151 valign=top style='width:113.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>…</span></p>
+  </td>
+  <td style='border:none;padding:0in 0in 0in 0in' width=151><p class='MsoNormal'>&nbsp;</td>
+ </tr>
+</table>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where # of payments by Cash, Wire or ACH is 50%
+or greater in the # of months in the time period covered by the transaction
+data (e.g. 5 of such payments in a 10-month period)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where # of
+such payments is between 30% and 50%.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where # of such payments is below 30%.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Payment source
+is owned by non-account holder</span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which a
+money launder may be using dirty money to pay off credit cards owned by other
+people</span></p>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:1.25in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Payment
+  Method</span></b></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Payment
+  Source Account ID</span></b></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border:solid windowtext 1.0pt;
+  border-left:none;background:gray;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><b><span lang=EN-US style='font-size:10.0pt;color:white'>Payment
+  Source Owner</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Cash</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Wire</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Wire
+  sender’s (i.e. the payer) Bank Account Number</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Name
+  of the Sender / Payer</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>ACH</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Wire
+  sender’s (i.e. the payer) Bank Account Number</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Name
+  of the Sender / Payer</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Paper
+  Check</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Bank
+  Account Number on the paper check</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Owner
+  of the account on the paper check</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>e-Check</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Bank
+  Account Number on the e-check</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Owner
+  of the account on the e-check</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>Online
+  Banking Transfer</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A
+  (Assumption is the online banking transfer is allowed only between accounts
+  owned by the same customer)</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>ATM
+  payment</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A
+  (Assumption is the credit card payment at an ATM is allowed only between
+  accounts owned by the same customer)</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>N/A</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=103 valign=top style='width:77.4pt;border:solid windowtext 1.0pt;
+  border-top:none;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>…</span></p>
+  </td>
+  <td width=222 valign=top style='width:166.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>&nbsp;</span></p>
+  </td>
+  <td width=186 valign=top style='width:139.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:10.0pt;color:#333333'>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where # of payments by non-account-holder is 40%
+or greater in the # of months in the time period covered by the transaction
+data (e.g. 4 of such payments in a 10-month period)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where # of
+such payments is between 25% and 40%.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where # of such payments is below 25%.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><span lang=EN-US
+style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Payment is
+frequently made at a location that is materially distant from the account
+address </span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which a
+money launder may be using other people at various locations to pay off credit
+card</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>Payment method includes cash and ATM payment.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Payment location / address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Address of record associated with the Credit Card account</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Distance (in miles) between payment location and account
+address.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>“Materially distant” is defined as payment location being
+more than 100 miles away from the account address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where # of payments at non-account-address is
+more than 50% or greater in the # of months in the time period covered by the
+transaction data (e.g. 5 of such payments in a 10-month period)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where # of
+such payments is between 30% and 50%.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where # of such payments is below 30%.</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Frequent or
+large transactions at high-risk countries </span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks associated
+with frequent or large credit card transactions at high-risk countries Payment
+method includes cash and ATM payment.</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>‘High Risk’ countries are defined as
+‘CURRENT_US_COUNTRY_RISK_RATING’ of 4 or 5 in the CRR table, for example:</span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-autospace:none'><span
+style='font-size:9.0pt;font-family:"Courier New";color:blue;background:white'>select</span><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;background:white'>
+</span><span style='font-size:9.0pt;font-family:"Courier New";color:blue;
+background:white'>distinct</span><span style='font-size:9.0pt;font-family:"Courier New";
+color:black;background:white'> COUNTRY_NAME,current_us_country_risk_rating </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-autospace:none'><span
+style='font-size:9.0pt;font-family:"Courier New";color:blue;background:white'>from</span><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;background:white'>
+IDP_PRD_INTERFACE.USPC.V_L3_HRA_US_AML_COUNTRY_RISK_RATING </span></p>
+
+<p class=MsoNormal style='margin-left:1.5in;text-autospace:none'><span
+style='font-size:9.0pt;font-family:"Courier New";color:blue;background:white'>where</span><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;background:white'>
+current_us_country_risk_rating</span><span style='font-size:9.0pt;font-family:
+"Courier New";color:gray;background:white'>&gt;</span><span style='font-size:
+9.0pt;font-family:"Courier New";color:maroon;background:white'>3</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:1.25in;text-indent:.25in;
+background:white'><span style='font-size:9.0pt;font-family:"Courier New";
+color:blue;background:white'>order</span><span style='font-size:9.0pt;
+font-family:"Courier New";color:black;background:white'> </span><span
+style='font-size:9.0pt;font-family:"Courier New";color:blue;background:white'>by</span><span
+style='font-size:9.0pt;font-family:"Courier New";color:black;background:white'>
+country_name</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'># of transactions at high-risk countries is 45% or
+greater against the total # of transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>$ value of transactions at high-risk countries is 45% or
+greater against the total $ value of transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where number
+(or $ value) of transactions at high-risk countries is between 30% and 45% of
+the total number (or $ value) of transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'> where
+number (or $ value) of transactions at high-risk countries is below 30% of the
+total number (or $ value) of transactions in the same time period</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Unusual ATM
+withdrawals for cash advance</span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><span lang=EN-US
+style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks associated
+with unusual pattern of credit card cash advance withdrawals at an ATM</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>ATM location and address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Credit card cash advance date/time and amount</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Account holder address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Distance between the ATM location and the Account holder
+address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'># of cash advances is 20% or greater against the total #
+of all credit card transactions in the same time period, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>$ value of cash advances is 20% or greater against the
+total $ value of all credit card transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'># of cash advances is between 10% and 20% against the
+total # of all credit card transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'> where
+</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'># of cash advances is below 10% against the total # of
+all credit card transactions in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.75in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Frequent Credit
+Card transactions at locations “materially distant” from the account address </span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which a
+money launder may be having other people at various locations to use the same
+credit card</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>Transaction types include ATM cash advances and POS
+transactions</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Transaction location / address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>If ATM or POS transaction, location and address of the
+ATM / POS</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Address of record associated with the Credit Card account</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Distance (in miles) between transaction location and
+account address.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'> “Materially distant” is defined as payment location
+being more than 100 miles away from the account address</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>50% or more of the number (or the $ value) of transactions
+are at a location that is “materially distant” (see #4 scenario) from the
+account location, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>There are multiple transactions at locations 200 miles or
+greater within an hour.</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Between 30% and 50% or more of the number (or the $
+value) of transactions are at a location that is “materially distant” (see #4
+scenario) from the account location</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where </span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Less than 30% of the number (or the $ value) of transactions
+are at a location that is “materially distant” (see #4 scenario) from the
+account location</span></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Merchant credits
+without offsetting merchant transactions&nbsp;</span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which merchant
+credits are applied to credit card without the matching (or offsetting)
+merchant transaction</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Merchant name and address (and unique ID if available)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Transaction type is available to identify refund or
+reversal or merchant credit </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Three or more Merchant credits without offsetting
+merchant transactions in a given month</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>One or two Merchant credits without offsetting merchant
+transactions in a given month</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where </span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Zero Merchant credits without offsetting merchant
+transactions in a given month</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><span lang=EN-US
+style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Hotel room
+rentals at different hotels over the same time period</span></u></b></p>
+
+<p class=MsoNormal style='margin-left:.25in;background:white'><b><u><span
+lang=EN-US style='color:#333333'><span style='text-decoration:none'>&nbsp;</span></span></u></b></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which hotel
+rooms were rented in different hotels in the same time period</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Credit card transaction information has details about the
+hotel stay, including hotel name and address, and dates of hotel stays</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>If hotel stays were pre-paid, transaction details should
+include the actual dates of hotel stays that are pre-paid</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>If available, the merchant credits or refunds for
+pre-paid hotel stays (e.g. dirty money can potentially be used to prepay for
+hotel stays, then later cancel the stays for clean-money refunds)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Two or more simultaneous (or overlapping) stays in
+different hotels, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Two or more pre-paid hotel stays that were subsequently
+refunded, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Refund for pre-paid hotel stays without the offsetting
+pre-paid hotel stays (see #8 scenario)</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>One simultaneous (or overlapping) stay in different
+hotels, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>One pre-paid hotel stays that were subsequently refunded</span><b><span
+lang=EN-US style='color:#009A00'> </span></b></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='color:#009A00'>Green</span></b><span
+lang=EN-US style='color:#333333'> where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Zero simultaneous (or overlapping) stay in different
+hotels, and</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Zero pre-paid hotel stays that were subsequently refunded</span><b><span
+lang=EN-US style='color:#009A00'> </span></b></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.75in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>10.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Multiple airline
+tickets for non-account holders</span></u></b></p>
+
+<p class=MsoNormal style='background:white'><span lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which multiple
+airline tickets were purchased for non-account holders</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Credit card transaction information has details about the
+airline ticket purchase, including the date of purchase, name of passenger(s),
+from/to itinerary, and dates of travel</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Four or more purchases of such airline tickets in a given
+month, or</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Any refund (or merchant credit) of such purchases without
+the offsetting transaction</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Two or three purchases of such airline tickets in a given
+month</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>One or less purchases of such airline tickets in a given
+month</span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.25in;background:white'><span
+lang=EN-US style='color:#333333'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:.25in;text-indent:-.25in;background:white'><b><span
+lang=EN-US style='color:#333333'>11.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span></b><b><u><span lang=EN-US style='color:#333333'>Unusually large
+payments for accumulated balance</span></u></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Scenario Description</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This scenario purports to detect AML risks in which unusually
+large payments are made for accumulated balance</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN-US
+style='color:#333333'>This will require the following data elements:</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>History of credit card balance by month</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>History of credit card payments by month</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Threshold</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:red'>Red</span></b><span lang=EN-US style='color:red'> </span><span
+lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Payment amount is two standard deviation (sigma) or more
+away from the mean of payments over the preceding six months</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:yellow;background:lightgrey'>Yellow</span></b><span lang=EN-US
+style='color:yellow'> </span><span lang=EN-US style='color:#333333'>where </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Payment amount is between one and two standard deviation
+(sigma) away from the mean of payments over the preceding six months</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:1.25in;text-indent:-9.0pt;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'> </span></span><b><span lang=EN-US
+style='color:#009A00'>Green</span></b><span lang=EN-US style='color:#333333'>
+where </span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:1.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Wingdings;color:#333333'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN-US
+style='color:#333333'>Payment amount is less than one standard deviation
+(sigma) away from the mean of payments over the preceding six months</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><b><u><span lang=EN-US>Other Scenarios</span></u></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoListParagraphCxSpFirst style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Separate transactions by
+credit and debit </span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:90.3pt;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:"Courier New";color:#333333'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><span
+lang=EN-US style='color:#333333'>See #2 scenario for details on credit / debit transaction
+types</span></p>
+
+<p class=MsoListParagraphCxSpMiddle style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Add non-account ids for
+wires and international ach </span></p>
+
+<p class=MsoListParagraphCxSpLast style='margin-left:.75in;text-indent:-.25in;
+background:white'><span lang=EN-US style='font-family:Symbol;color:#333333'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='color:#333333'>Add locations not on
+customer balance</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
